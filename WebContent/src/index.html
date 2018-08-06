@@ -1,0 +1,56 @@
+<html lang="en" ng-app="planning">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- CSS -->
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+<!-- Customize CSS -->
+<link href="../css/mystyle.css" rel="stylesheet" type="text/css"/>
+
+<!-- Javascript -->
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.min.js"></script>
+<!-- D3JS -->
+<script type="text/javascript" src="../js/d3.min.js"></script>
+
+<!-- Controller -->
+<script type="text/javascript" src="controller/MainController.js"></script>
+
+</head>
+<title>Planning Management</title>
+<body ng-controller="MainController">
+
+	<div>
+		<header class="wrapper">
+            <div class="center2"><img src="../images/planning-logo.jpg" height="60px" alt="PLANNING" /></div>
+        </header>
+		<nav>
+            <div class="center2 wrapper">
+                <a class="nav-item" href="goal_mngt.html" title="Goal Management">Goal Management</a>
+                <a class="nav-item" href="project_mngt.html" title="Project Management">Project Management</a>
+                <a class="nav-item" href="plan_mngt.html" title="Plan Management">Plan Management</a>
+                <a class="nav-item" href="plan_execution.html" title="Plan execution">Plan Execution</a>
+                <a class="nav-item" href="state_mngt.html" title="State Management">State Management</a>
+            </div>
+        </nav>
+	</div>
+	<div class="container">
+		<div class="row text-center">
+			<h3 class="text-large" style="padding-top: 20px; padding-bottom: 20px">
+				Planning Management Workflow
+			</h3>
+		</div>
+	</div>
+	<div class="container">
+		<div id="planning" class="center"></div>
+	</div>
+	<div id="section-popup" class="popup">
+    </div>
+    <footer>
+         <div class="wrapper center2">
+             <div><img src="../images/bdi-logo.jpg" height="40px" alt="BDI" /></div>
+         </div>
+     </footer>
+</body>
+</html>

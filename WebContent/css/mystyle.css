@@ -1,0 +1,122 @@
+header { padding: 10px; }
+
+nav {
+    background-color: #25609a; border-bottom: solid 2px #1d5288;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    text-shadow: 1px 1px 1px #333;
+}
+.nav-item { color: inherit; cursor: pointer; display: inline-block; padding: 10px 20px; text-decoration: none; text-shadow: 1px 1px 1px #333; }
+.nav-item:hover, .nav-item.current:hover { background-color: #e9f1f8; color: #428bca; text-shadow: 1px 1px 1px #fff; }
+.nav-item.current { color: #fff568; text-shadow: 1px 1px 1px #1d326c; }
+
+footer {
+    background-color: #eff3f7;
+    border-top: 1px solid #c2ced9;
+    color: #777;
+    margin-top: 30px;
+    padding: 10px 0 10px 0;
+}
+
+.wrapper { margin: 0 auto; width: 100%; }
+.center2 { text-align: center; }
+
+.my_container {
+	padding-top: 15px;
+}
+
+.center {
+	margin: auto;
+	width: 60%;
+	padding: 10px;
+	border: 1px solid;
+}
+
+.selected {
+	fill: orange;
+}
+
+.active {
+	fill: lightsteelblue;
+	opacity: 1;
+}
+
+.none {
+	fill: white;
+	opacity: 1;
+}
+
+.background {
+	fill: none;
+	pointer-events: all;
+}
+
+.popup {
+	background-color: #ffffff;
+	border: 1px solid #000000;
+	display: none;
+	padding: 10px;
+	position: absolute;
+	z-index: 1000;
+	height: 300px;
+	min-width: 250px;
+	overflow-y: scroll;
+	overflow-x: hidden; 
+}
+
+.no-paddingleft {
+	padding-left: 0 !important;
+}
+
+.no-paddingright {
+	padding-right: 0 !important;
+}
+
+a {
+	cursor: pointer;
+}
+
+div.tooltip {	
+    position: absolute;			
+    text-align: center;			
+    /* width: 150px; */					
+    /*height: 28px;	*/			
+    padding: 2px;				
+    font: 18px sans-serif;
+    font-weight: bold;
+    background: lightsteelblue;	
+    border: 1px solid black;		
+    border-radius: 4px;			
+    pointer-events: none;			
+}
+
+.node {
+  stroke: #fff;
+  stroke-width: 3px;
+}
+
+.link {
+  stroke: #999;
+  stroke-opacity: 1;
+}
+
+.closeImg {
+	padding-right: 2px;
+}
+
+iframe {
+	overflow: hidden;
+}
+
+.arrow {
+	stroke-width:5;
+	stroke:#000;
+	stroke-dasharray:5, 5;
+}
+
+.image-border {
+    fill: transparent;
+    stroke: black;
+    shape-rendering: crispEdges;
+}

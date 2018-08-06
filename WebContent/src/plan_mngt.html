@@ -1,0 +1,91 @@
+<html lang="en" ng-app="planning">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- CSS -->
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="../css/tree/treeGrid.css">
+
+<!-- Customize CSS -->
+<link href="../css/mystyle.css" rel="stylesheet" type="text/css"/>
+
+<!-- Javascript -->
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.min.js"></script>
+<!-- tree grid -->
+<script src="../js/tree/tree-grid-directive.js"></script>
+<!-- moment time format -->
+<script type="text/javascript" src="../js/moment.min.js"></script>
+
+<!-- Controller -->
+<script type="text/javascript" src="controller/PlanMngtController.js"></script>
+
+</head>
+<title>Planning Management System</title>
+<body ng-controller="PlanMngtController">
+
+	<div>
+		<header class="wrapper">
+            <div class="center2"><img src="../images/planning-logo.jpg" height="60px" alt="PLANNING" /></div>
+        </header>
+		<nav>
+            <div class="center2 wrapper">
+            	<a class="nav-item" href="index.html" title="Main">Home</a>
+                <a class="nav-item" href="goal_mngt.html" title="Goal Management">Goal Management</a>
+                <a class="nav-item" href="project_mngt.html" title="Project Management">Project Management</a>
+                <a class="nav-item current" href="plan_mngt.html" title="Plan Management">Plan Management</a>
+                <a class="nav-item" href="plan_execution.html" title="Plan execution">Plan Execution</a>
+                <a class="nav-item" href="state_mngt.html" title="State Management">State Management</a>
+            </div>
+        </nav>
+	</div>
+	<div class="container my_container">
+        <div class="col-md-12" style="text-align: center;">
+            <h3>Plan management</h3>
+        </div>
+        
+        <div class="col-md-12" style="text-align: center;">
+			<div id="searchDiv" class="col-md-12" style="width: 100% !important;">
+				<div class="col-md-12">
+					<label>Project Name (*): </label> 
+					<select ng-model="projectId">
+                        <option ng-repeat="proj in projList" value="{{proj.id}}">{{proj.name}}</option>
+                    </select>
+				</div>
+				<div class="col-md-12" style="padding-top: 20px;">
+					<button type="button" class="btn btn-default"
+						id="btnSearch" ng-click="doSearch()">Search</button>
+				</div>
+			</div>
+		</div>
+
+		<div class="container responsive col-md-12" style="padding-top: 20px;">
+			<div class="col-md-12" style="margin-top: 5px">
+				<div class="col-md-6 no-paddingleft" style="text-align: left; padding-top: 10px">
+					Total: <label class="text-primary">{{total_count}}</label>
+				</div>
+                <div class="col-md-6 no-paddingright" style="text-align: right; padding-bottom: 5px;">
+				    <button class="btn btn-default btn-sm" type="button">
+					  <img src="../images/add.png"> New Plan</span>
+                    </button>
+				</div>
+			</div>
+            <div class="col-md-12">
+                <tree-grid 
+                        tree-data="tree_data" 
+                        tree-control="my_tree" 
+                        col-defs="col_defs" 
+                        expand-on="expanding_property" 
+                        on-click="my_tree_handler(branch)"
+                        icon-leaf= "None">
+                </tree-grid>
+            </div>
+		</div>
+	</div>
+    <footer>
+         <div class="wrapper center2">
+             <div><img src="../images/bdi-logo.jpg" height="40px" alt="BDI" /></div>
+         </div>
+     </footer>
+</body>
+</html>

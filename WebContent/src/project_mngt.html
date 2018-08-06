@@ -1,0 +1,95 @@
+<html lang="en" ng-app="planning">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- CSS -->
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+<!-- Customize CSS -->
+<link href="../css/mystyle.css" rel="stylesheet" type="text/css"/>
+
+<!-- Javascript -->
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.min.js"></script>
+<!-- dirPagination -->
+<script type="text/javascript" src="../js/dirPagination.js"></script>
+
+<!-- Controller -->
+<script type="text/javascript" src="controller/ProjectMngtController.js"></script>
+
+</head>
+<title>Planning Management System</title>
+<body ng-controller="ProjectMngtController">
+
+	<div>
+		<header class="wrapper">
+            <div class="center2"><img src="../images/planning-logo.jpg" height="60px" alt="PLANNING" /></div>
+        </header>
+		<nav>
+            <div class="center2 wrapper">
+            	<a class="nav-item" href="index.html" title="Main">Home</a>
+                <a class="nav-item" href="goal_mngt.html" title="Goal Management">Goal Management</a>
+                <a class="nav-item current" href="project_mngt.html" title="Project Management">Project Management</a>
+                <a class="nav-item" href="plan_mngt.html" title="Plan Management">Plan Management</a>
+                <a class="nav-item" href="plan_execution.html" title="Plan execution">Plan Execution</a>
+                <a class="nav-item" href="state_mngt.html" title="State Management">State Management</a>
+            </div>
+        </nav>
+	</div>
+	<div class="container my_container">
+        <div class="col-md-12" style="text-align: center;">
+            <h3>Project management</h3>
+        </div>
+		<div class="container responsive col-md-12">
+			<div class="col-md-12" style="margin-top: 5px">
+				<div class="col-md-6 no-paddingleft" style="text-align: left; padding-top: 10px">
+					Total: <label class="text-primary">{{total_count}}</label>
+				</div>
+                <div class="col-md-6 no-paddingright" style="text-align: right; padding-bottom: 5px;">
+				    <button class="btn btn-default" type="button">
+					  <img src="../images/add.png"> New Project</span>
+                    </button>
+				</div>
+			</div>
+			<table class="table table-bordered table-hover">
+				<thead>
+					<tr>
+						<th class="col-md-1" style="width: 10px">#</th>
+                        <th class="col-md-1 text-center">ID</th>
+                        <th class="col-md-1 text-center">Goal ID</th>
+						<th class="col-md-3">Name</th>
+						<th class="col-md-3">Description</th>
+						<th class="col-md-3">Date start-end</th>
+						<th class="col-md-1">Manager</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-show="projectList.length <= 0">
+						<td colspan="7" style="text-align: center;">{{loading}}</td>
+					</tr>
+					<tr dir-paginate="proj in projectList|itemsPerPage:itemsPerPage"
+						total-items="total_count">
+						<td>{{proj.index}}</td>
+                        <td class="text-center">{{proj.id}}</td>
+                        <td class="text-center">{{proj.goalId}}</td>
+                        <td>{{proj.name}}</td>
+                        <td>{{proj.description}}</td>
+						<td>{{proj.date_start | date: 'yyyy/MM/dd'}} - {{proj.date_end | date: 'yyyy/MM/dd'}}</td>
+						<td>{{proj.manager_name}}</td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="text-center">
+				<dir-pagination-controls max-size="itemsPerPage" direction-links="true"
+					boundary-links="true" on-page-change="doSearch(newPageNumber)">
+				</dir-pagination-controls>
+			</div>
+		</div>
+	</div>
+    <footer>
+         <div class="wrapper center2">
+             <div><img src="../images/bdi-logo.jpg" height="40px" alt="BDI" /></div>
+         </div>
+     </footer>
+</body>
+</html>

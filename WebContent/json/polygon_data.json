@@ -1,0 +1,48 @@
+{
+"menu":[
+	[{"dx": 0, "y": 10, "width": 150, "height": 100}],
+    [{"dx": 200, "y": 10, "width": 150, "height": 100}],
+	[{"dx": 0, "y": 140, "width": 150, "height": 100}],
+	[{"dx": 0, "y": 270, "width": 150, "height": 100}], 
+    [{"dx": 200, "y": 220, "width": 150, "height": 100}],
+    [{"dx": 200, "y": 360, "width": 150, "height": 100}],
+	[{"dx": 0, "y": 400, "width": 150, "height": 100}]
+],
+"text": 
+[
+	[{"dx": 47, "dy": 50, "text": "Goal", "fontSize": "20px", "transform": 0}],
+    [{"dx": 47, "dy": 50, "text": "State", "fontSize": "20px", "transform": 0}],
+	[{"dx": 40, "dy": 50, "text": "Project", "fontSize": "20px", "transform": 0}],
+	[{"dx": 50, "dy": 50, "text": "Plan", "fontSize": "20px", "transform": 0}], 
+    [{"dx": 20, "dy": 50, "text": "Plan version", "fontSize": "18px", "transform": 0}],
+    [{"dx": 25, "dy": 50, "text": "Plan detail", "fontSize": "18px", "transform": 0}],
+	[{"dx": 8, "dy": 50, "text": "Plan execution", "fontSize": "18px", "transform": 0}]
+],
+"line": 
+[
+	[{"dx1": 0, "y1": 110, "dx2": 0, "y2": 140}],
+    [{"dx1": 75, "y1": 60, "dx2": 125, "y2": 60}],
+    [{"dx1": 0, "y1": 240, "dx2": 0, "y2": 270}],
+    [{"dx1": 75, "y1": 320, "dx2": 125, "y2": 270}],
+    [{"dx1": 75, "y1": 320, "dx2": 125, "y2": 410}],
+    [{"dx1": 0, "y1": 370, "dx2": 0, "y2": 400}]
+],
+"addIcon":[
+	[{"dx": 30, "dy": 60, "width": 32, "height": 32}],
+    [{"dx": 30, "dy": 60, "width": 32, "height": 32}],
+	[{"dx": 30, "dy": 60, "width": 32, "height": 32}],
+	[{"dx": 30, "dy": 60, "width": 32, "height": 32}],
+	[{"dx": 30, "dy": 60, "width": 32, "height": 32}],
+    [{"dx": 30, "dy": 60, "width": 32, "height": 32}],
+	[{"dx": 30, "dy": 60, "width": 32, "height": 32}]
+],
+"viewIcon":[
+	[{"dx": 90, "dy": 60, "width": 32, "height": 32}],
+	[{"dx": 90, "dy": 60, "width": 32, "height": 32}],
+	[{"dx": 90, "dy": 60, "width": 32, "height": 32}],
+	[{"dx": 90, "dy": 60, "width": 32, "height": 32}],
+	[{"dx": 90, "dy": 60, "width": 32, "height": 32}],
+    [{"dx": 90, "dy": 60, "width": 32, "height": 32}],
+	[{"dx": 90, "dy": 60, "width": 32, "height": 32}]
+]
+}
