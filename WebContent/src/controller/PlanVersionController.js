@@ -1,6 +1,6 @@
 var planning = angular.module('planning', ['treeGrid']);
 
-planning.controller('PlanMngtController', function($scope, $http, $interval) {
+planning.controller('PlanVersionController', function($scope, $http, $interval) {
 	var BASE_URL = "http://localhost:9000/";
 //	var BASE_URL = "http://147.47.206.15:19000/";
 	$scope.message = 'Please Wait...';
@@ -19,23 +19,17 @@ planning.controller('PlanMngtController', function($scope, $http, $interval) {
     	{ field: "versionId", displayName: "Version"},
     	{ field: "date_created", displayName: "Date created"},
     	{ field: "user_create_name", displayName: "User created"},
-        { field: "id", displayName: "Action", 
-            cellTemplate: '<button class="btn btn-default btn-sm" ng-click="cellTemplateScope.click(row.branch[col.field])">Update</button>',
+        { field: "id", displayName: "Version", 
+            cellTemplate: '<button class="btn btn-default btn-sm" ng-click="cellTemplateScope.click(row.branch[col.field])">View</button>',
             cellTemplateScope: {
                 click: function(data) {
-                    // update plan detail
+                    // view plan version
                     sessionStorage.setItem("plan_id", data);
-        	        document.location.href = 'plan_detail.html';
-                }
-            }
-        },
-        { field: "id", displayName: "Execution", 
-            cellTemplate: '<button class="btn btn-default btn-sm" ng-click="cellTemplateScope.click(row.branch[col.field])">Execute</button>',
-            cellTemplateScope: {
-                click: function(data) {
-                    // move to plan execution page
-                    sessionStorage.setItem("plan_id", data);
-        	        document.location.href = 'plan_execution.html';
+        	        // open new window
+                    w = screen.width; h = screen.height;
+                    var left = (screen.width/2)-(w/2);
+                    var top = (screen.height/2)-(h/2);
+                    window.open("plan_version_view.html", "_blank", 'width='+w+', height='+h+', top='+top+', left='+left); 
                 }
             }
         }

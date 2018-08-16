@@ -5,7 +5,6 @@
 
 <!-- CSS -->
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-
 <!-- Customize CSS -->
 <link href="../css/mystyle.css" rel="stylesheet" type="text/css"/>
 
@@ -23,7 +22,7 @@
 
 	<div>
 		<header class="wrapper">
-            <div class="center2"><img src="../images/planning-logo.jpg" height="60px" alt="PLANNING" /></div>
+            <div class="center2"><h1 style="color: red; font-weight: bold">PLANNING MANAGEMENT SYSTEM</h1></div>
         </header>
 		<nav>
             <div class="center2 wrapper">
@@ -31,8 +30,9 @@
                 <a class="nav-item" href="goal_mngt.html" title="Goal Management">Goal Management</a>
                 <a class="nav-item" href="project_mngt.html" title="Project Management">Project Management</a>
                 <a class="nav-item" href="plan_mngt.html" title="Plan Management">Plan Management</a>
-                <a class="nav-item" href="plan_execution.html" title="Plan execution">Plan Execution</a>
+                <a class="nav-item" href="plan_version.html" title="Plan Version">Plan Version</a>
                 <a class="nav-item current" href="state_mngt.html" title="State Management">State Management</a>
+                <a class="nav-item" href="plan_item.html" title="Plan Item">Plan Item</a>
             </div>
         </nav>
 	</div>
@@ -40,7 +40,25 @@
         <div class="col-md-12" style="text-align: center;">
             <h3>State management</h3>
         </div>
-		<div class="container responsive col-md-12">
+
+        <div class="col-md-12" style="text-align: center;">
+			<div id="searchDiv" class="col-md-12" style="width: 100% !important;">
+				<div class="col-md-12">
+					<label class="col-md-2">Project Code (*): </label> 
+					<select class="col-md-4" ng-model="projectId">
+                        <option ng-repeat="proj in projList" value="{{proj.id}}" ng-click="selectProject(proj.name)">{{proj.code}}</option>
+                    </select>
+                    <label class="col-md-2">Project Name: </label> 
+					<label class="col-md-4" style="font-size: bigger">{{projectName}}</label>
+				</div>
+				<div class="col-md-12" style="padding-top: 20px;">
+					<button type="button" class="btn btn-default"
+						id="btnSearch" ng-click="doSearch(1)">Search</button>
+				</div>
+			</div>
+		</div>
+
+		<div class="container responsive col-md-12" style="padding-top: 20px;">
 			<div class="col-md-12" style="margin-top: 5px">
 				<div class="col-md-6 no-paddingleft" style="text-align: left; padding-top: 10px">
 					Total: <label class="text-primary">{{total_count}}</label>
@@ -56,20 +74,24 @@
 					<tr>
 						<th class="col-md-1" style="width: 10px">#</th>
 						<th class="col-md-2">State name</th>
-						<th class="col-md-8">State content</th>
+						<th class="col-md-3">State content</th>
+                        <th class="col-md-2">Distance to Goal</th>
+                        <th class="col-md-3">State result</th>
 						<th class="col-md-1 text-center">Is initial</th>
 						<th class="col-md-1 text-center">Is goal</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr ng-show="stateList.length <= 0">
-						<td colspan="5" style="text-align: center;">{{loading}}</td>
+						<td colspan="7" style="text-align: center;">{{loading}}</td>
 					</tr>
 					<tr dir-paginate="s in stateList|itemsPerPage:itemsPerPage"
 						total-items="total_count">
 						<td>{{s.index}}</td>
                         <td>{{s.name}}</td>
                         <td>{{s.content}}</td>
+                        <td>{{s.distance2goal}}</td>
+                        <td>{{s.result}}</td>
 						<td class="text-center">{{s.is_initial > 0 ? '1' : '-'}}</td>
 						<td class="text-center">{{s.is_goal > 0 ? '1' : '-'}}</td>
 					</tr>
@@ -83,8 +105,8 @@
 		</div>
 	</div>
     <footer>
-         <div class="wrapper center2">
-             <div><img src="../images/bdi-logo.jpg" height="40px" alt="BDI" /></div>
+         <div class="wrapper center2" style="height: 40px">
+             
          </div>
      </footer>
 </body>

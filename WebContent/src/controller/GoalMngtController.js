@@ -3,7 +3,6 @@ var datavisual = angular.module('planning', ['angularUtils.directives.dirPaginat
 datavisual.controller('GoalMngtController', function($scope, $http, $interval) {
 	var BASE_URL = "http://localhost:9000/";
 //	var BASE_URL = "http://147.47.206.15:19000/";
-//	var BASE_URL = "http://147.47.206.15:29001/";
 	$scope.message = 'Please Wait...';
 	$scope.backdrop = true;
 	$scope.promise = null;
@@ -14,30 +13,6 @@ datavisual.controller('GoalMngtController', function($scope, $http, $interval) {
 	$scope.itemsPerPage = 10;
 	
 	$scope.doSearch = function(pageno) {
-		//get time
-		/*var fromTime = $("#datetimepicker1").data("DateTimePicker").date();
-		if(fromTime === null) {
-			alert('You must input Date Time !');
-			return false;
-		}
-		fromTime = fromTime.unix() * 1000;
-		var toTime = $("#datetimepicker2").data("DateTimePicker").date();
-		if(toTime === null) {
-			toTime = new Date().getTime();
-		}
-		else {
-			toTime = toTime.unix() * 1000;
-		}
-		var macAddress = $("#searchMac").val();
-		if(macAddress.trim() === '') {
-			alert('You must input MAC address !');
-			return false;
-		}*/
-		/*inspectFromTime = fromTime;
-		inspectToTime = toTime;
-		inspectMacAddress = macAddress;
-		//encode mac address
-		$scope.encodedMac = macAddress;//window.btoa(macAddress);*/
 		//search data
 		$scope.goalList = [];
 		$scope.total_count = 0;
@@ -58,17 +33,7 @@ datavisual.controller('GoalMngtController', function($scope, $http, $interval) {
 		});
 	};
 	
-	function dateFormat(dateValue, format) {
-		var d = moment(dateValue);
-		return d.format(format);
-	};
-	
-	
-	$scope.closePopup = function() {
-		$('#graph-popup').fadeOut('fast');
-	}
-	
-    $scope.doSearch(1)
+    $scope.doSearch(1);
 });
 
 

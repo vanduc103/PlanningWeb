@@ -23,16 +23,17 @@
 
 	<div>
 		<header class="wrapper">
-            <div class="center2"><img src="../images/planning-logo.jpg" height="60px" alt="PLANNING" /></div>
+            <div class="center2"><h1 style="color: red; font-weight: bold">PLANNING MANAGEMENT SYSTEM</h1></div>
         </header>
 		<nav>
             <div class="center2 wrapper">
             	<a class="nav-item" href="index.html" title="Main">Home</a>
                 <a class="nav-item" href="goal_mngt.html" title="Goal Management">Goal Management</a>
                 <a class="nav-item" href="project_mngt.html" title="Project Management">Project Management</a>
-                <a class="nav-item" href="plan_mngt.html" title="Plan Management">Plan Management</a>
-                <a class="nav-item current" href="plan_execution.html" title="Plan execution">Plan Execution</a>
+                <a class="nav-item current" href="plan_mngt.html" title="Plan Management">Plan Management</a>
+                <a class="nav-item" href="plan_version.html" title="Plan Version">Plan Version</a>
                 <a class="nav-item" href="state_mngt.html" title="State Management">State Management</a>
+                <a class="nav-item" href="plan_item.html" title="Plan Item">Plan Item</a>
             </div>
         </nav>
 	</div>
@@ -41,12 +42,12 @@
             <h3>Plan execution of '{{plan_name}}'</h3>
         </div>
 		<div class="container responsive col-md-12">
-			<div class="col-md-12" style="margin-top: 5px">
-				<div class="col-md-6 no-paddingleft" style="text-align: left; padding-top: 10px">
+			<div class="col-md-12 no-paddingleft no-paddingright" style="margin-top: 5px">
+				<div class="col-md-6" style="text-align: left; padding-top: 10px">
 					Total: <label class="text-primary">{{total_count}}</label> items
 				</div>
-                <div class="col-md-6 no-paddingright" style="text-align: right; padding-bottom: 5px;">
-				    <button class="btn btn-default" type="button">
+                <div class="col-md-6" style="text-align: right; padding-bottom: 5px;">
+				    <button class="btn btn-default" type="button" ng-click="addNew()">
 					  <img src="../images/add.png"> New Execution</span>
                     </button>
 				</div>
@@ -56,11 +57,11 @@
 					<tr>
 						<th class="col-md-1" style="width: 10px">#</th>
                         <th class="col-md-4">Plan item</th>
-                        <th class="col-md-4">Value</th>
-                        <th class="col-md-1">Date log</th>
+                        <th class="col-md-3">Value</th>
 						<th class="col-md-1">User executed</th>
 						<th class="col-md-1">Date start</th>
 						<th class="col-md-1">Date end</th>
+                        <th class="col-md-2">Time log</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -72,10 +73,10 @@
 						<td>{{d.index}}</td>
                         <td>{{d.item_name}}</td>
                         <td>{{d.item_value}} {{d.item_unit}}</td>
-                        <td>{{d.date_log | date: 'yyyy/MM/dd HH:mm:ss'}}</td>
                         <td>{{d.user_executed_name}}</td>
 						<td>{{d.date_start | date: 'yyyy/MM/dd'}}</td>
 						<td>{{d.date_end | date: 'yyyy/MM/dd'}}</td>
+                        <td>{{d.date_log | date: 'yyyy/MM/dd HH:mm:ss'}}</td>
 					</tr>
 				</tbody>
 			</table>
@@ -87,8 +88,8 @@
 		</div>
 	</div>
     <footer>
-         <div class="wrapper center2">
-             <div><img src="../images/bdi-logo.jpg" height="40px" alt="BDI" /></div>
+         <div class="wrapper center2" style="height: 40px">
+             
          </div>
      </footer>
 </body>

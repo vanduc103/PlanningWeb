@@ -5,7 +5,6 @@
 
 <!-- CSS -->
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-
 <!-- Customize CSS -->
 <link href="../css/mystyle.css" rel="stylesheet" type="text/css"/>
 
@@ -15,78 +14,70 @@
 <script type="text/javascript" src="../js/dirPagination.js"></script>
 
 <!-- Controller -->
-<script type="text/javascript" src="controller/PlanDetailController.js"></script>
+<script type="text/javascript" src="controller/PlanVersionViewController.js"></script>
 
 </head>
 <title>Planning Management System</title>
-<body ng-controller="PlanDetailController">
+<body ng-controller="PlanVersionViewController">
 
 	<div>
 		<header class="wrapper">
             <div class="center2"><h1 style="color: red; font-weight: bold">PLANNING MANAGEMENT SYSTEM</h1></div>
         </header>
-		<nav>
-            <div class="center2 wrapper">
-            	<a class="nav-item" href="index.html" title="Main">Home</a>
-                <a class="nav-item" href="goal_mngt.html" title="Goal Management">Goal Management</a>
-                <a class="nav-item" href="project_mngt.html" title="Project Management">Project Management</a>
-                <a class="nav-item current" href="plan_mngt.html" title="Plan Management">Plan Management</a>
-                <a class="nav-item" href="plan_version.html" title="Plan Version">Plan Version</a>
-                <a class="nav-item" href="state_mngt.html" title="State Management">State Management</a>
-                <a class="nav-item" href="plan_item.html" title="Plan Item">Plan Item</a>
+        <nav>
+            <div class="center2 wrapper" style="height: 40px">
             </div>
         </nav>
 	</div>
+
     <div class="container my_container">
         <div class="col-md-12" style="text-align: center;">
-            <h3>Constraint rules of '{{plan_name}}'</h3>
+            <h3>Plan revision of '{{plan_name}}'</h3>
         </div>
-		<div class="container responsive col-md-12">
-			<div class="col-md-12" style="margin-top: 5px">
-                <div class="col-md-12 no-paddingright" style="text-align: right; padding-bottom: 5px;">
-				    <button class="btn btn-default" type="button">
-					  <img src="../images/add.png"> New constraint</span>
-                    </button>
-				</div>
-			</div>
+		<div class="container responsive col-md-12" style="padding-top: 10px">
 			<table class="table table-bordered table-hover">
 				<thead>
 					<tr>
 						<th class="col-md-1" style="width: 10px">#</th>
-                        <th class="col-md-12">Constraint rule</th>
+                        <th class="col-md-1 text-center">View</th>
+                        <th class="col-md-1 text-center">Version</th>
+                        <th class="col-md-2">Date created</th>
+                        <th class="col-md-2">Date updated</th>
+                        <th class="col-md-2">User created</th>
+                        <th class="col-md-2">User updated</th>
+                        <th class="col-md-2">Comment</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-show="ruleList.length <= 0">
-						<td colspan="2" style="text-align: center;">{{loading}}</td>
+					<tr ng-show="revisionList.length <= 0">
+						<td colspan="8" style="text-align: center;">{{loading}}</td>
 					</tr>
-					<tr dir-paginate="d in ruleList|itemsPerPage:itemsPerPage"
+					<tr dir-paginate="d in revisionList|itemsPerPage:itemsPerPage"
 						total-items="total_count">
 						<td>{{d.index}}</td>
-                        <td>{{d.constraint_rule}}</td>
+                        <td class="text-center">
+                            <input type="radio" name="id" ng-click="doViewVersion(d.id)"></input>
+                        </td>
+                        <td class="text-center">{{d.id}}</td>
+                        <td>{{d.date_created | date: 'yyyy/MM/dd'}}</td>
+                        <td>{{d.date_updated | date: 'yyyy/MM/dd'}}</td>
+                        <td>{{d.user_created_name}}</td>
+                        <td>{{d.user_updated_name}}</td>
+                        <td>{{d.comment}}</td>
 					</tr>
 				</tbody>
 			</table>
-			<div class="text-center">
-				<dir-pagination-controls max-size="itemsPerPage" direction-links="true"
-					boundary-links="true" on-page-change="doSearchRule(newPageNumber)">
-				</dir-pagination-controls>
-			</div>
 		</div>
 	</div>
-	<div class="container my_container">
+
+	<div class="container my_container" ng-show="versionId > 0">
         <div class="col-md-12" style="text-align: center;">
-            <h3>Plan detail of '{{plan_name}}'</h3>
+            <h3>Plan detail of version '{{versionId}}'</h3>
         </div>
 		<div class="container responsive col-md-12">
 			<div class="col-md-12" style="margin-top: 5px">
 				<div class="col-md-6 no-paddingleft" style="text-align: left; padding-top: 10px">
 					Total: <label class="text-primary">{{total_count}}</label> items
-				</div>
-                <div class="col-md-6 no-paddingright" style="text-align: right; padding-bottom: 5px;">
-				    <button class="btn btn-default" type="button" ng-click="addNew()">
-					  <img src="../images/add.png"> New Plan detail</span>
-                    </button>
 				</div>
 			</div>
 			<table class="table table-bordered table-hover">
@@ -119,11 +110,12 @@
 			</table>
 			<div class="text-center">
 				<dir-pagination-controls max-size="itemsPerPage" direction-links="true"
-					boundary-links="true" on-page-change="doSearch(newPageNumber)">
+					boundary-links="true" on-page-change="doSearchPlanDetail(newPageNumber)">
 				</dir-pagination-controls>
 			</div>
 		</div>
 	</div>
+
     <footer>
          <div class="wrapper center2" style="height: 40px">
              

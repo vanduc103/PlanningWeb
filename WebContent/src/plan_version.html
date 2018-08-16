@@ -17,25 +17,23 @@
 <script type="text/javascript" src="../js/moment.min.js"></script>
 
 <!-- Controller -->
-<script type="text/javascript" src="controller/PlanMngtController.js"></script>
+<script type="text/javascript" src="controller/PlanVersionController.js"></script>
 
 </head>
 <title>Planning Management System</title>
-<body ng-controller="PlanMngtController">
+<body ng-controller="PlanVersionController">
 
 	<div>
 		<header class="wrapper">
-            <div class="center2">
-                <h1 style="color: red; font-weight: bold">PLANNING MANAGEMENT SYSTEM</h1>
-            </div>
+            <div class="center2"><h1 style="color: red; font-weight: bold">PLANNING MANAGEMENT SYSTEM</h1></div>
         </header>
 		<nav>
             <div class="center2 wrapper">
             	<a class="nav-item" href="index.html" title="Main">Home</a>
                 <a class="nav-item" href="goal_mngt.html" title="Goal Management">Goal Management</a>
                 <a class="nav-item" href="project_mngt.html" title="Project Management">Project Management</a>
-                <a class="nav-item current" href="plan_mngt.html" title="Plan Management">Plan Management</a>
-                <a class="nav-item" href="plan_version.html" title="Plan Version">Plan Version</a>
+                <a class="nav-item" href="plan_mngt.html" title="Plan Management">Plan Management</a>
+                <a class="nav-item current" href="plan_version.html" title="Plan Version">Plan Version</a>
                 <a class="nav-item" href="state_mngt.html" title="State Management">State Management</a>
                 <a class="nav-item" href="plan_item.html" title="Plan Item">Plan Item</a>
             </div>
@@ -43,7 +41,7 @@
 	</div>
 	<div class="container my_container">
         <div class="col-md-12" style="text-align: center;">
-            <h3>Plan management</h3>
+            <h3>Plan Version management</h3>
         </div>
         
         <div class="col-md-12" style="text-align: center;">
@@ -69,11 +67,6 @@
 				<div class="col-md-6" style="text-align: left; padding-top: 10px">
 					Total: <label class="text-primary">{{total_count}}</label>
 				</div>
-                <div class="col-md-6" style="text-align: right; padding-bottom: 5px;">
-				    <button class="btn btn-default btn-sm" type="button">
-					  <img src="../images/add.png"> New Plan</span>
-                    </button>
-				</div>
 			</div>
             <div class="col-md-12">
                 <tree-grid 
@@ -88,10 +81,10 @@
             </div>
 		</div>
 	</div>
-    <div>
-        <footer>
-             <div class="wrapper center2" style="height: 40px"></div>
-        </footer>
-    </div>
+    <footer>
+         <div class="wrapper center2" style="height: 40px">
+             
+         </div>
+    </footer>
 </body>
 </html>

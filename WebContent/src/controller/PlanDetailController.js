@@ -14,13 +14,19 @@ planning.controller('PlanDetailController', function($scope, $http, $interval) {
     $scope.plan_id = -1;
     $scope.plan_name = '';
 
-    //get plan from another page
-	var otherPagePlanId = sessionStorage.getItem("plan_id");
-    var otherPagePlanName = sessionStorage.getItem("plan_name");
-	if(otherPagePlanName !== undefined && otherPagePlanName !== '') {
-		$scope.plan_id = otherPagePlanId;
-        $scope.plan_name = otherPagePlanName;
-	}
+	//get plan from another page
+    var otherPagePlanId = sessionStorage.getItem("plan_id");
+    if(otherPagePlanId !== undefined && otherPagePlanId !== '') {
+	    $scope.plan_id = otherPagePlanId;
+        // get plan name from DB
+        var url = BASE_URL + 'searchPlan?planId=' + $scope.plan_id;
+	    $http.get(url).then(function(response) {
+		    var data = response.data;
+            if (data.length > 0) {
+		        $scope.plan_name = data[0].name;
+            }
+	    });
+    }
 	
 	$scope.doSearch = function(pageno) {
 		//search data
@@ -42,14 +48,44 @@ planning.controller('PlanDetailController', function($scope, $http, $interval) {
 			}
 		});
 	};
+
+    $scope.doSearchRule = function(pageno) {
+		//search data
+		$scope.ruleList = [];
+		$scope.loading = 'Searching...';
+		//search condition
+		var url = BASE_URL + 'searchConstraint?planId=' + $scope.plan_id + '&pageIndex=' + pageno + '&pageSize=' + $scope.itemsPerPage;
+		$http.get(url).then(function(response) {
+			var data = response.data;
+			for(var i in data) {
+				data[i].index = parseInt(i) + 1 + (pageno - 1) * $scope.itemsPerPage;
+			}
+			$scope.ruleList = data;
+			if($scope.ruleList.length <= 0) {
+				$scope.loading = 'No data found !';
+				return;
+			}
+		});
+	};
 	
 	function dateFormat(dateValue, format) {
 		var d = moment(dateValue);
 		return d.format(format);
 	};
+
+    $scope.addNew = function() {
+        if ($scope.plan_id == -1) return;
+        // store plan_id to session
+        sessionStorage.setItem("plan_id", $scope.plan_id);
+        // open new window
+        w = 800; h = 600;
+        var left = (screen.width/2)-(w/2);
+        var top = (screen.height/2)-(h/2);
+        window.open("plan_detail_insert.html", "_blank", 'width='+w+', height='+h+', top='+top+', left='+left); 
+    };
 	
-	
-    $scope.doSearch(1)
+	$scope.doSearchRule(1);
+    $scope.doSearch(1);
 });
 
 

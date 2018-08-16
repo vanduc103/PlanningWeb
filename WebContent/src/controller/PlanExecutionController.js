@@ -16,8 +16,7 @@ planning.controller('PlanExecutionController', function($scope, $http, $interval
 
     //get plan from another page
 	var otherPagePlanId = sessionStorage.getItem("plan_id");
-    var otherPagePlanName = sessionStorage.getItem("plan_name");
-	if(otherPagePlanId !== undefined && otherPagePlanId !== '') {
+	if(otherPagePlanId !== undefined && otherPagePlanId !== 'null') {
 		$scope.plan_id = otherPagePlanId;
         // get plan name from DB
         var url = BASE_URL + 'searchPlan?planId=' + $scope.plan_id;
@@ -25,6 +24,7 @@ planning.controller('PlanExecutionController', function($scope, $http, $interval
 			var data = response.data;
             if (data.length > 0) {
 			    $scope.plan_name = data[0].name;
+                $scope.doSearch(1);
             }
 		});
 	}
@@ -55,8 +55,17 @@ planning.controller('PlanExecutionController', function($scope, $http, $interval
 		return d.format(format);
 	};
 	
+    $scope.addNew = function() {
+        if ($scope.plan_id == -1) return;
+        // store plan_id to session
+        sessionStorage.setItem("plan_id", $scope.plan_id);
+        // open new window
+        w = 800; h = 600;
+        var left = (screen.width/2)-(w/2);
+        var top = (screen.height/2)-(h/2);
+        window.open("plan_execution_insert.html", "_blank", 'width='+w+', height='+h+', top='+top+', left='+left); 
+    };
 	
-    $scope.doSearch(1)
 });
 
 

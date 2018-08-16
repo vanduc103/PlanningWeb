@@ -11,67 +11,46 @@
 
 <!-- Javascript -->
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.min.js"></script>
+<!-- dirPagination -->
+<script type="text/javascript" src="../js/dirPagination.js"></script>
 <!-- tree grid -->
 <script src="../js/tree/tree-grid-directive.js"></script>
-<!-- moment time format -->
-<script type="text/javascript" src="../js/moment.min.js"></script>
 
 <!-- Controller -->
-<script type="text/javascript" src="controller/PlanMngtController.js"></script>
+<script type="text/javascript" src="controller/PlanItemController.js"></script>
 
 </head>
 <title>Planning Management System</title>
-<body ng-controller="PlanMngtController">
+<body ng-controller="PlanItemController">
 
 	<div>
 		<header class="wrapper">
-            <div class="center2">
-                <h1 style="color: red; font-weight: bold">PLANNING MANAGEMENT SYSTEM</h1>
-            </div>
+            <div class="center2"><h1 style="color: red; font-weight: bold">PLANNING MANAGEMENT SYSTEM</h1></div>
         </header>
 		<nav>
             <div class="center2 wrapper">
             	<a class="nav-item" href="index.html" title="Main">Home</a>
                 <a class="nav-item" href="goal_mngt.html" title="Goal Management">Goal Management</a>
                 <a class="nav-item" href="project_mngt.html" title="Project Management">Project Management</a>
-                <a class="nav-item current" href="plan_mngt.html" title="Plan Management">Plan Management</a>
+                <a class="nav-item" href="plan_mngt.html" title="Plan Management">Plan Management</a>
                 <a class="nav-item" href="plan_version.html" title="Plan Version">Plan Version</a>
                 <a class="nav-item" href="state_mngt.html" title="State Management">State Management</a>
-                <a class="nav-item" href="plan_item.html" title="Plan Item">Plan Item</a>
+                <a class="nav-item current" href="plan_item.html" title="Plan Item">Plan Item</a>
             </div>
         </nav>
 	</div>
 	<div class="container my_container">
         <div class="col-md-12" style="text-align: center;">
-            <h3>Plan management</h3>
+            <h3>Plan items management</h3>
         </div>
-        
-        <div class="col-md-12" style="text-align: center;">
-			<div id="searchDiv" class="col-md-12" style="width: 100% !important;">
-				<div class="col-md-12">
-					<label class="col-md-2">Project Code (*): </label> 
-					<select class="col-md-4" ng-model="projectId">
-                        <option ng-repeat="proj in projList" value="{{proj.id}}" ng-click="selectProject(proj.name)">{{proj.code}}</option>
-                    </select>
-                    <label class="col-md-2">Project Name: </label> 
-					<label class="col-md-4">{{projectName}}</label>
-				</div>
-					
-				<div class="col-md-12" style="padding-top: 20px;">
-					<button type="button" class="btn btn-default"
-						id="btnSearch" ng-click="doSearch()">Search</button>
-				</div>
-			</div>
-		</div>
-
-		<div class="container responsive col-md-12" style="padding-top: 20px;">
+		<div class="container responsive col-md-12">
 			<div class="col-md-12 no-paddingleft no-paddingright" style="margin-top: 5px">
 				<div class="col-md-6" style="text-align: left; padding-top: 10px">
 					Total: <label class="text-primary">{{total_count}}</label>
 				</div>
                 <div class="col-md-6" style="text-align: right; padding-bottom: 5px;">
-				    <button class="btn btn-default btn-sm" type="button">
-					  <img src="../images/add.png"> New Plan</span>
+				    <button class="btn btn-default" type="button" ng-click="addNew()">
+					  <img src="../images/add.png"> New Item</span>
                     </button>
 				</div>
 			</div>
@@ -88,10 +67,10 @@
             </div>
 		</div>
 	</div>
-    <div>
-        <footer>
-             <div class="wrapper center2" style="height: 40px"></div>
-        </footer>
-    </div>
+    <footer>
+         <div class="wrapper center2" style="height: 40px">
+             
+         </div>
+     </footer>
 </body>
 </html>
