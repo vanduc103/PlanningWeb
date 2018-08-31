@@ -77,6 +77,14 @@ datavisual.controller('StateMngtController', function($scope, $http, $interval) 
 			}
 		});
 	};
+
+    $scope.distanceView = function() {
+        // open new window
+        w = 960; h = 630;
+        var left = (screen.width/2)-(w/2);
+        var top = (screen.height/2)-(h/2);
+        window.open("state_distance_view.html", "_blank", 'width='+w+', height='+h+', top='+top+', left='+left); 
+    };
 	
     $scope.listProject();
 });

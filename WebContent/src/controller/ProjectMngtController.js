@@ -14,25 +14,6 @@ datavisual.controller('ProjectMngtController', function($scope, $http, $interval
 	$scope.itemsPerPage = 10;
 	
 	$scope.doSearch = function(pageno) {
-		//get time
-		/*var fromTime = $("#datetimepicker1").data("DateTimePicker").date();
-		if(fromTime === null) {
-			alert('You must input Date Time !');
-			return false;
-		}
-		fromTime = fromTime.unix() * 1000;
-		var toTime = $("#datetimepicker2").data("DateTimePicker").date();
-		if(toTime === null) {
-			toTime = new Date().getTime();
-		}
-		else {
-			toTime = toTime.unix() * 1000;
-		}
-		var macAddress = $("#searchMac").val();
-		if(macAddress.trim() === '') {
-			alert('You must input MAC address !');
-			return false;
-		}*/
 		//search data
 		$scope.projectList = [];
 		$scope.total_count = 0;
@@ -53,17 +34,15 @@ datavisual.controller('ProjectMngtController', function($scope, $http, $interval
 		});
 	};
 	
-	function dateFormat(dateValue, format) {
-		var d = moment(dateValue);
-		return d.format(format);
-	};
+	$scope.addNew = function() {
+        // open new window
+        w = 800; h = 800;
+        var left = (screen.width/2)-(w/2);
+        var top = (screen.height/2)-(h/2);
+        window.open("project_mngt_insert.html", "_blank", 'width='+w+', height='+h+', top='+top+', left='+left); 
+    };
 	
-	
-	$scope.closePopup = function() {
-		$('#graph-popup').fadeOut('fast');
-	}
-	
-    $scope.doSearch(1)
+    $scope.doSearch(1);
 });
 
 

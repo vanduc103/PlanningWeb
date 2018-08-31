@@ -42,7 +42,8 @@ datavisual.controller('PlanItemInsertController', function($scope, $http, $inter
             if (data != '0') {
 		        alert('Insert successfully !');
                 window.opener.location.reload();
-                close();
+                $scope.newItem = {"parentId": -1, "itemName": '', "itemUnit": "", "description": ""}
+                //close();
             }
             else {
                 alert('Insert failed !');

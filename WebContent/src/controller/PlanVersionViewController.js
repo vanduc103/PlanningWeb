@@ -16,7 +16,7 @@ planning.controller('PlanVersionViewController', function($scope, $http, $interv
     $scope.plan_name = '';
 
     $scope.versionId = 0;
-    $scope.latestVersion = 0;
+    //$scope.latestVersion = 0;
 
 	//get plan from another page
     var otherPagePlanId = sessionStorage.getItem("plan_id");
@@ -28,7 +28,7 @@ planning.controller('PlanVersionViewController', function($scope, $http, $interv
 		    var data = response.data;
             if (data.length > 0) {
 		        $scope.plan_name = data[0].name;
-                $scope.latestVersion = data[0].versionId;
+                //$scope.latestVersion = data[0].versionId;
             }
 	    });
     }
@@ -54,35 +54,14 @@ planning.controller('PlanVersionViewController', function($scope, $http, $interv
 
     $scope.doViewVersion = function(id) {
         $scope.versionId = id;
-        if ($scope.versionId == $scope.latestVersion) {
+        /*if ($scope.versionId == $scope.latestVersion) {
             $scope.doSearchPlanDetail(1);
         }
         else {
             $scope.doSearchDetailRevision(1);
-        }
+        }*/
+        $scope.doSearchDetailRevision(1);
     };
-
-	$scope.doSearchPlanDetail = function(pageno) {
-		//search data
-		$scope.detailList = [];
-		$scope.total_count = 0;
-		$scope.loading = 'Searching...';
-		//search condition
-		var url = BASE_URL + 'searchPlanDetail?planId=' + $scope.plan_id + '&curVersion=' + $scope.versionId
-                                                        + '&pageIndex=' + pageno + '&pageSize=' + $scope.itemsPerPage;
-		$http.get(url).then(function(response) {
-			var data = response.data;
-			for(var i in data) {
-				data[i].index = parseInt(i) + 1 + (pageno - 1) * $scope.itemsPerPage;
-				$scope.total_count = data[i].totalResult;
-			}
-		    $scope.detailList = data;
-		    if($scope.detailList.length <= 0) {
-			    $scope.loading = 'No data found !';
-			    return;
-		    }
-		});
-	};
 
     $scope.doSearchDetailRevision = function(pageno) {
 		//search data
@@ -104,6 +83,10 @@ planning.controller('PlanVersionViewController', function($scope, $http, $interv
 	        }
         });
 	};
+
+    $scope.doClose = function() {
+        close();
+    }
 
     // start
 	$scope.doSearchRevision();

@@ -60,11 +60,11 @@ datavisual.controller('PlanDetailInsertController', function($scope, $http, $int
         //plan_id
 	    if($scope.plan_id != -1) {
 		    //submit url
-            var url = BASE_URL + 'newPlanDetail?planId='+$scope.plan_id
-                                                + '&itemId='+$scope.newDetail.itemId 
-                                                + '&itemValue='+$scope.newDetail.itemValue
-                                                + '&startDate='+$scope.newDetail.startDate
-                                                + '&endDate='+$scope.newDetail.endDate;
+            var url = BASE_URL + 'newPlanDetail?planId=' + $scope.plan_id
+                                                + '&itemId=' + $scope.newDetail.itemId 
+                                                + '&itemValue=' + $scope.newDetail.itemValue
+                                                + '&startDate=' + $scope.newDetail.startDate
+                                                + '&endDate=' + $scope.newDetail.endDate;
 		    $http.get(url).then(function(response) {
                 var data = response.data;
                 if (data != '0') {

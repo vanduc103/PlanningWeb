@@ -2,7 +2,6 @@ var planning = angular.module('planning', ['treeGrid']);
 
 planning.controller('PlanMngtController', function($scope, $http, $interval) {
 	var BASE_URL = "http://localhost:9000/";
-//	var BASE_URL = "http://147.47.206.15:19000/";
 	$scope.message = 'Please Wait...';
 	$scope.backdrop = true;
 	$scope.promise = null;
@@ -16,9 +15,22 @@ planning.controller('PlanMngtController', function($scope, $http, $interval) {
     $scope.expanding_property = { field: "name", displayName: "Name"};
 
     $scope.col_defs = [
-    	{ field: "versionId", displayName: "Version"},
-    	{ field: "date_created", displayName: "Date created"},
-    	{ field: "user_create_name", displayName: "User created"},
+    	{ field: "versionId", displayName: "Version",
+            cellTemplate: '<a ng-click="cellTemplateScope.click(row.branch[\'id\'])">{{ row.branch[col.field] }}</a>',
+            cellTemplateScope: {
+                click: function(data) {
+                    // open plan version view
+                    sessionStorage.setItem("plan_id", data);
+        	        // open new window
+                    w = screen.width; h = screen.height;
+                    var left = (screen.width/2)-(w/2);
+                    var top = (screen.height/2)-(h/2);
+                    window.open("plan_version_view.html", "_blank", 'width='+w+', height='+h+', top='+top+', left='+left); 
+                }
+            }
+        },
+    	{ field: "initial_budget", displayName: "Initial budget"},
+    	{ field: "executed_budget", displayName: "Executed budget"},
         { field: "id", displayName: "Action", 
             cellTemplate: '<button class="btn btn-default btn-sm" ng-click="cellTemplateScope.click(row.branch[col.field])">Update</button>',
             cellTemplateScope: {
@@ -66,12 +78,13 @@ planning.controller('PlanMngtController', function($scope, $http, $interval) {
 		$scope.total_count = 0;
 		$scope.loading = 'Searching...';
 		//search condition
-		var url = BASE_URL + 'searchPlan?projectId=' + projId;
+		var url = BASE_URL + 'searchPlan?projectId=' + projId + '&searchBudget=true';
 		$http.get(url).then(function(response) {
 			var data = response.data;
 			$scope.planList = data;
             for(var i in data) {
-				data[i].date_created = dateFormat(data[i].date_created, datetimeFormat);
+                data[i].initial_budget = data[i].initial_budget.toLocaleString();
+                data[i].executed_budget = data[i].executed_budget.toLocaleString();
 			}
             $scope.total_count = $scope.planList.length;
 			if($scope.planList.length <= 0) {
@@ -135,8 +148,23 @@ planning.controller('PlanMngtController', function($scope, $http, $interval) {
 	    return tree;
     };
 
+    $scope.addNew = function() {
+        if ($scope.projectId == -1) return;
+        // store project_id to session
+        sessionStorage.setItem("project_id", $scope.projectId);
+        // open new window
+        w = 800; h = 600;
+        var left = (screen.width/2)-(w/2);
+        var top = (screen.height/2)-(h/2);
+        window.open("plan_mngt_insert.html", "_blank", 'width='+w+', height='+h+', top='+top+', left='+left); 
+    };
+
     function dateFormat(dateValue, format) {
 		var d = moment(dateValue);
+		return d.format(format);
+	};
+
+    function numberFormat(numValue, format) {
 		return d.format(format);
 	};
 

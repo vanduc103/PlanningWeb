@@ -1,0 +1,58 @@
+<html lang="en" ng-app="planning">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- CSS -->
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+<!-- Customize CSS -->
+<link href="../css/mystyle.css" rel="stylesheet" type="text/css"/>
+
+<!-- Javascript -->
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.min.js"></script>
+<!-- D3JS -->
+<script type="text/javascript" src="../js/d3.min.js"></script>
+
+<!-- Controller -->
+<script type="text/javascript" src="controller/StateDistanceViewController.js"></script>
+
+<style>
+.chart {
+
+}
+
+.main text {
+    font: 10px sans-serif;	
+}
+
+.axis line, .axis path {
+    shape-rendering: crispEdges;
+    stroke: black;
+    fill: none;
+}
+
+.x.axis path {
+  display: none;
+}
+
+</style>
+
+</head>
+<title>Planning Management System</title>
+<body ng-controller="StateDistanceViewController">
+
+	<div>
+	</div>
+
+	<div class="container my_container">
+        <div class="col-md-12" style="text-align: center;">
+            <h3>Distance to goal</h3>
+        </div>
+		<div id="viewDiv" style="margin: auto;"></div>
+        <div class="col-sm-12" style="text-align: center">
+            <button type="button" class="btn btn-default" ng-click="doClose()">Close</button>
+        </div>
+	</div>
+
+</body>
+</html>

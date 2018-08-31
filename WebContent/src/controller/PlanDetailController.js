@@ -34,11 +34,13 @@ planning.controller('PlanDetailController', function($scope, $http, $interval) {
 		$scope.total_count = 0;
 		$scope.loading = 'Searching...';
 		//search condition
-		var url = BASE_URL + 'searchPlanDetail?planId=' + $scope.plan_id + '&pageIndex=' + pageno + '&pageSize=' + $scope.itemsPerPage;
+		var url = BASE_URL + 'searchPlanDetail?planId=' + $scope.plan_id + '&searchActual=true'
+                            + '&pageIndex=' + pageno + '&pageSize=' + $scope.itemsPerPage;
 		$http.get(url).then(function(response) {
 			var data = response.data;
 			for(var i in data) {
 				data[i].index = parseInt(i) + 1 + (pageno - 1) * $scope.itemsPerPage;
+                data[i].actual_value = data[i].actual_value.toLocaleString();
 				$scope.total_count = data[i].totalResult;
 			}
 			$scope.detailList = data;
@@ -82,6 +84,17 @@ planning.controller('PlanDetailController', function($scope, $http, $interval) {
         var left = (screen.width/2)-(w/2);
         var top = (screen.height/2)-(h/2);
         window.open("plan_detail_insert.html", "_blank", 'width='+w+', height='+h+', top='+top+', left='+left); 
+    };
+
+    $scope.addNewConstraint = function() {
+        if ($scope.plan_id == -1) return;
+        // store plan_id to session
+        sessionStorage.setItem("plan_id", $scope.plan_id);
+        // open new window
+        w = 800; h = 600;
+        var left = (screen.width/2)-(w/2);
+        var top = (screen.height/2)-(h/2);
+        window.open("constraint_insert.html", "_blank", 'width='+w+', height='+h+', top='+top+', left='+left); 
     };
 	
 	$scope.doSearchRule(1);

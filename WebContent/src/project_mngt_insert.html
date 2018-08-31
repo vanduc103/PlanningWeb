@@ -12,11 +12,11 @@
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.min.js"></script>
 
 <!-- Controller -->
-<script type="text/javascript" src="controller/PlanExecutionInsertController.js"></script>
+<script type="text/javascript" src="controller/ProjectMngtInsertController.js"></script>
 
 </head>
 <title>Planning Management System</title>
-<body ng-controller="PlanExecutionInsertController">
+<body ng-controller="ProjectMngtInsertController">
 
 	<div>
 		<header class="wrapper">
@@ -30,43 +30,54 @@
 
 	<div class="container my_container">
         <div class="col-md-12" style="text-align: center;">
-            <h3>New Plan Execution of '{{plan_name}}'</h3>
+            <h3>New Project</h3>
         </div>
 		<div class="col-md-12" style="text-align: center; padding-top: 10px" >
 			<div id="searchDiv" class="col-md-12 form-horizontal" style="width: 100% !important;">
                 <div class="form-group">
-					<label class="control-label col-sm-3" for="parentItem" style="text-align: left">Parent item (*): </label>
+					<label class="control-label col-sm-3" for="goal" style="text-align: left">Goal (*): </label>
                     <div class="col-sm-9">
-					    <select id="parentItem" class="form-control" ng-model="parentId">
-                            <option ng-repeat="item in parentItemList" value="{{item.id}}" ng-click="selectParentItem(item.id)">{{item.id}}. {{item.name}}</option>
-                        </select>
-                    </div>
-				</div>
-				<div class="form-group">
-					<label class="control-label col-sm-3" for="item" style="text-align: left">Item (*): </label>
-                    <div class="col-sm-9">
-					    <select id="item" class="form-control" ng-model="newExecution.itemId">
-                            <option ng-repeat="item in itemList" value="{{item.id}}" ng-click="selectItem(item.unit)">{{item.name}}</option>
+					    <select id="goal" class="form-control" ng-model="newProj.goalId">
+                            <option ng-repeat="g in goalList" value="{{g.id}}">{{g.id}}. {{g.target}}</option>
                         </select>
                     </div>
 				</div>
                 <div class="form-group">
-					<label class="control-label col-sm-3" for="value" style="text-align: left">Item value (*): </label>
-                    <div class="col-sm-8">
-					    <input id="value" class="form-control" ng-model="newExecution.itemValue"/>
-                    </div>
-                    <label class="control-label col-sm-1">{{newExecution.itemUnit}}</label>
-				</div>
-                <div class="form-group">
-					<label class="control-label col-sm-3" for="startDate" style="text-align: left">Start Date (*): </label>
+					<label class="control-label col-sm-3" for="code" style="text-align: left">Code (*): </label>
                     <div class="col-sm-9">
-					    <input id="startDate" class="form-control" ng-model="newExecution.startDate"/>
+					    <input id="code" class="form-control" ng-model="newProj.code"/>
                     </div>
 				</div>
                 <div class="form-group">
-					<label class="control-label col-sm-3" for="endDate" style="text-align: left">End Date (*): </label>
+					<label class="control-label col-sm-3" for="name" style="text-align: left">Name (*): </label>
                     <div class="col-sm-9">
-					    <input id="endDate" class="form-control" ng-model="newExecution.endDate"/>
+					    <input id="name" class="form-control" ng-model="newProj.name"/>
+                    </div>
+				</div>
+                <div class="form-group">
+					<label class="control-label col-sm-3" for="description" style="text-align: left">Description: </label>
+                    <div class="col-sm-9">
+					    <input id="description" class="form-control" ng-model="newProj.description"/>
+                    </div>
+				</div>
+                <div class="form-group">
+					<label class="control-label col-sm-3" for="date_start" style="text-align: left">Date start (*): </label>
+                    <div class="col-sm-9">
+					    <input id="date_end" class="form-control" ng-model="newProj.date_start"/>
+                    </div>
+				</div>
+                <div class="form-group">
+					<label class="control-label col-sm-3" for="date_end" style="text-align: left">Date end (*): </label>
+                    <div class="col-sm-9">
+					    <input id="date_end" class="form-control" ng-model="newProj.date_end"/>
+                    </div>
+				</div>
+                <div class="form-group">
+					<label class="control-label col-sm-3" for="manager" style="text-align: left">Manager (*): </label>
+                    <div class="col-sm-9">
+					    <select id="manager" class="form-control" ng-model="newProj.managerId">
+                            <option ng-repeat="u in userList" value="{{u.id}}">{{u.name}}</option>
+                        </select>
                     </div>
 				</div>
 					

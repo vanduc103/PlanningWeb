@@ -34,6 +34,14 @@
         <div class="col-md-12" style="text-align: center;">
             <h3>Plan revision of '{{plan_name}}'</h3>
         </div>
+        <div class="col-md-12" style="margin-top: 5px">
+				<div class="col-md-6 no-paddingleft" style="text-align: left; padding-top: 10px">
+					Total: <label class="text-primary">{{revisionList.length}}</label>
+				</div>
+                <div class="col-md-6 no-paddingright" style="text-align: right; padding-bottom: 5px;">
+				    <button class="btn btn-default" type="button" ng-click="doClose()">Close</button>
+				</div>
+			</div>
 		<div class="container responsive col-md-12" style="padding-top: 10px">
 			<table class="table table-bordered table-hover">
 				<thead>
@@ -45,7 +53,7 @@
                         <th class="col-md-2">Date updated</th>
                         <th class="col-md-2">User created</th>
                         <th class="col-md-2">User updated</th>
-                        <th class="col-md-2">Comment</th>
+                        <th class="col-md-2">Change reason</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -70,7 +78,7 @@
 		</div>
 	</div>
 
-	<div class="container my_container" ng-show="versionId > 0">
+	<div class="container my_container" ng-show="detailList.length > 0">
         <div class="col-md-12" style="text-align: center;">
             <h3>Plan detail of version '{{versionId}}'</h3>
         </div>

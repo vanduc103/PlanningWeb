@@ -3,36 +3,10 @@ var datavisual = angular.module('planning', []);
 datavisual.controller('MainController', function($scope, $http, $interval) {
 	var BASE_URL = "http://localhost:9000/";
 //	var BASE_URL = "http://147.47.206.15:19000/";
-//	var BASE_URL = "http://147.47.206.15:29001/";
 	$scope.message = 'Please Wait...';
 	$scope.backdrop = true;
 	$scope.promise = null;
-	var fromTime = 0, toTime = 0;
-	var trackingGroup = sessionStorage.trackingGroup;
-	if(trackingGroup === null || trackingGroup === undefined) {
-		trackingGroup = [];
-	} else {
-		try {
-			trackingGroup = JSON.parse(trackingGroup);
-		}catch(e) {
-			trackingGroup = [];
-		}
-	}
 	
-	//make from time and to time
-	var makeTime = function() {
-		var curDate = new Date();
-		
-		//to time = current date and time
-		toTime = curDate.getTime();
-		//one month ago
-		//toTime = toTime - 81*24*60*60*1000;
-		//toTime = toTime - 9 * 60 * 60 * 1000;
-		//fromTime = toTime - 1 minutes
-		fromTime = toTime - 5*60*1000;
-		//var fromTime = new Date(curDate.getFullYear(), curDate.getMonth(), curDate.getDate()-10, 0, 0, 0).getTime();
-	}
-		
 	//init variable
 	var width = 624,
     height = 527,
@@ -94,11 +68,13 @@ datavisual.controller('MainController', function($scope, $http, $interval) {
                 // Icon add and view
                 addIcon = polygon.addIcon[i][0]
                 g.append("svg:image")
+                            .attr('class', 'addIcon')
                             .attr('x', menu_x + addIcon.dx)
                             .attr('y', menuData.y + addIcon.dy)
                             .attr('width', addIcon.width)
                             .attr('height', addIcon.height)
                             .attr("xlink:href", "../images/add.png")
+                            .on("click", add_clicked);
                 /*g.append('rect')
                           .attr('class', 'image-border')
                           .attr('x', menu_x + addIcon.dx)
@@ -120,11 +96,39 @@ datavisual.controller('MainController', function($scope, $http, $interval) {
                             .attr('width', viewIcon.width)
                             .attr('height', viewIcon.height)
                             .attr("xlink:href", "../images/view.png")
-                            .on("click", clicked);
+                            .on("click", view_clicked);
 			}
 		});
 
-	    function clicked(d) {
+        function add_clicked(d) {
+            d3.selectAll('.addIcon')
+              .on('click', function(d, i) {
+                 // move to corresponding page
+                 switch(i) {
+                    case 0: 
+                            document.location.href = 'goal_mngt.html';
+                            break;
+                    case 1: 
+                            document.location.href = 'state_mngt.html';
+                            break;
+                    case 2: 
+                            document.location.href = 'project_mngt.html';
+                            break;
+                    case 3: 
+                    case 5:
+                            document.location.href = 'plan_mngt.html';
+                            break;
+                    case 4:
+                            document.location.href = 'plan_version.html';
+                            break;
+                    case 6: 
+                            document.location.href = 'plan_execution.html';
+                            break;
+                 }
+              });
+        };
+
+	    function view_clicked(d) {
             d3.selectAll('.viewIcon')
               .on('click', function(d, i) {
                  // move to corresponding page
@@ -139,9 +143,11 @@ datavisual.controller('MainController', function($scope, $http, $interval) {
                             document.location.href = 'project_mngt.html';
                             break;
                     case 3: 
-                    case 4:
                     case 5:
                             document.location.href = 'plan_mngt.html';
+                            break;
+                    case 4:
+                            document.location.href = 'plan_version.html';
                             break;
                     case 6: 
                             document.location.href = 'plan_execution.html';
