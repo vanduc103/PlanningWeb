@@ -1,0 +1,104 @@
+<html lang="en" ng-app="planning">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- CSS -->
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+<!-- Customize CSS -->
+<link href="../css/mystyle.css" rel="stylesheet" type="text/css"/>
+
+<!-- Javascript -->
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.min.js"></script>
+
+<!-- Controller -->
+<script type="text/javascript" src="controller/StateMngtInsertController.js"></script>
+
+</head>
+<title>Planning Management System</title>
+<body ng-controller="StateMngtInsertController">
+
+	<div>
+		<header class="wrapper">
+            <div class="center2"><h1 style="color: red; font-weight: bold">PLANNING MANAGEMENT SYSTEM</h1></div>
+        </header>
+        <nav>
+            <div class="center2 wrapper" style="height: 40px">
+            </div>
+        </nav>
+	</div>
+
+	<div class="container my_container">
+        <div class="col-md-12" style="text-align: center;">
+            <h3>New State</h3>
+        </div>
+		<div class="col-md-12" style="text-align: center; padding-top: 10px" >
+			<div id="searchDiv" class="col-md-12 form-horizontal" style="width: 100% !important;">
+                <div class="form-group">
+					<label class="control-label col-sm-3" for="project" style="text-align: left">Project (*): </label>
+                    <div class="col-sm-9">
+					    <select id="project" class="form-control" ng-model="newState.projectId">
+                            <option ng-repeat="p in projectList" value="{{p.id}}">[{{p.code}}] {{p.name}}</option>
+                        </select>
+                    </div>
+				</div>
+                <div class="form-group">
+					<label class="control-label col-sm-3" for="name" style="text-align: left">State name (*): </label>
+                    <div class="col-sm-9">
+					    <input id="name" class="form-control" ng-model="newState.name"/>
+                    </div>
+				</div>
+                <div class="form-group">
+					<label class="control-label col-sm-3" for="checkpointDate" style="text-align: left">Checkpoint Date (*): </label>
+                    <div class="col-sm-9">
+					    <input id="checkpointDate" class="form-control" ng-model="newState.checkpointDate"/>
+                    </div>
+				</div>
+                <div class="form-group">
+					<label class="control-label col-sm-3" for="planState" style="text-align: left">Plan State: </label>
+                    <div class="col-sm-9">
+					    <input id="planState" class="form-control" ng-model="newState.planState"/>
+                    </div>
+				</div>
+                <div class="form-group">
+					<label class="control-label col-sm-3" for="curState" style="text-align: left">Current State: </label>
+                    <div class="col-sm-9">
+					    <input id="curState" class="form-control" ng-model="newState.curState"/>
+                    </div>
+				</div>
+                <div class="form-group">
+					<label class="control-label col-sm-3" for="result" style="text-align: left">Result so far: </label>
+                    <div class="col-sm-9">
+					    <input id="result" class="form-control" ng-model="newState.result"/>
+                    </div>
+				</div>
+                <div class="form-group">
+					<label class="control-label col-sm-3" for="isInitial" style="text-align: left">Is initial ? </label>
+                    <div class="col-sm-9">
+					    <input type="checkbox" id="isInitial" ng-model="newState.isInitial"/>
+                    </div>
+				</div>
+                <div class="form-group">
+					<label class="control-label col-sm-3" for="isGoal" style="text-align: left">Is goal ? </label>
+                    <div class="col-sm-9">
+					    <input type="checkbox" id="isGoal" ng-model="newState.isGoal"/>
+                    </div>
+				</div>
+					
+				<div class="form-group">
+                    <div class="col-sm-offset-3 col-sm-9">
+                        <button type="submit" class="btn btn-primary col-sm-2" ng-click="doSubmit()">Add</button>
+                        <button type="submit" class="btn btn-default col-sm-2" ng-click="doClose()">Close</button>
+                    </div>
+                </div>
+			</div>
+		</div>
+	</div>
+
+    <footer>
+         <div class="wrapper center2" style="height: 40px">
+             
+         </div>
+     </footer>
+</body>
+</html>

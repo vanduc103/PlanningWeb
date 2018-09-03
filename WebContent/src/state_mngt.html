@@ -72,7 +72,7 @@
 					Total: <label class="text-primary">{{total_count}}</label>
 				</div>
                 <div class="col-md-6 no-paddingright" style="text-align: right; padding-bottom: 5px;">
-				    <button class="btn btn-default" type="button">
+				    <button class="btn btn-default" type="button" ng-click="addNew()">
 					  <img src="../images/add.png"> New State</span>
                     </button>
 				</div>
@@ -81,25 +81,29 @@
 				<thead>
 					<tr>
 						<th class="col-md-1" style="width: 10px">#</th>
-						<th class="col-md-2">Name</th>
+						<th class="col-md-1">Name</th>
+                        <th class="col-md-2">Plan state</th>
+                        <th class="col-md-2">Distance to Goal</th>
 						<th class="col-md-2">Current state</th>
                         <th class="col-md-2">Distance to Goal</th>
-                        <th class="col-md-4">Result so far</th>
+                        <th class="col-md-1">Checkpoint date</th>
 						<th class="col-md-1 text-center">Is initial</th>
 						<th class="col-md-1 text-center">Is goal</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr ng-show="stateList.length <= 0">
-						<td colspan="7" style="text-align: center;">{{loading}}</td>
+						<td colspan="8" style="text-align: center;">{{loading}}</td>
 					</tr>
 					<tr dir-paginate="s in stateList|itemsPerPage:itemsPerPage"
 						total-items="total_count">
 						<td>{{s.index}}</td>
                         <td>{{s.name}}</td>
+                        <td>{{s.plan_state}}</td>
+                        <td>{{s.distance2goal1}}</td>
                         <td>{{s.content}}</td>
-                        <td>{{s.distance2goal}}</td>
-                        <td>{{s.result}}</td>
+                        <td>{{s.distance2goal2}}</td>
+                        <td>{{s.checkpoint_date | date: 'yyyy/MM/dd'}}</td>
 						<td class="text-center">{{s.is_initial > 0 ? '1' : '-'}}</td>
 						<td class="text-center">{{s.is_goal > 0 ? '1' : '-'}}</td>
 					</tr>

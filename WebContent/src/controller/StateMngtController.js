@@ -49,25 +49,44 @@ datavisual.controller('StateMngtController', function($scope, $http, $interval) 
                 if (data[i].is_goal == 1) goal_idx = i;
 			}
             // calculate distance to goal
-            completed_goal = 0;
-            passed_month_goal = 1;
+            completed_goal1 = 0;
+            passed_month_goal1 = 1;
+            completed_goal2 = 0;
+            passed_month_goal2 = 1;
             for(var i in data) {
                 // extract content to find %complete and passed months
-                items = data[i].content.split(" ");
-                data[i].completed = parseInt(items[0]);
-                data[i].passed_month = items[2];
+                items1 = data[i].plan_state.split(" ");
+                data[i].completed1 = parseInt(items1[0]);
+                data[i].passed_month1 = items1[2];
                 if (i == goal_idx) {
-                    completed_goal = data[i].completed;
-                    passed_month_goal = data[i].passed_month;
+                    completed_goal1 = data[i].completed1;
+                    passed_month_goal1 = data[i].passed_month1;
+                }
+                items2 = data[i].content.split(" ");
+                data[i].completed2 = parseInt(items2[0]);
+                data[i].passed_month2 = items2[2];
+                if (i == goal_idx) {
+                    completed_goal2 = data[i].completed2;
+                    passed_month_goal2 = data[i].passed_month2;
                 }
             }
-            balance_ratio = completed_goal/passed_month_goal;
+            balance_ratio1 = completed_goal1/passed_month_goal1;
+            balance_ratio2 = completed_goal2/passed_month_goal2;
             for(var i in data) {
-                if (i == goal_idx) data[i].distance2goal = 0;
-                else data[i].distance2goal = 
-                            Math.abs(data[i].completed - completed_goal)/balance_ratio 
-                          + Math.abs(data[i].passed_month - passed_month_goal);
-                data[i].distance2goal = data[i].distance2goal.toFixed(1);
+                if (i == goal_idx) {
+                    data[i].distance2goal1 = 0;
+                    data[i].distance2goal2 = 0;
+                }
+                else {
+                    data[i].distance2goal1 = 
+                            Math.abs(data[i].completed1 - completed_goal1)/balance_ratio1 
+                          + Math.abs(data[i].passed_month1 - passed_month_goal1);
+                    data[i].distance2goal2 = 
+                            Math.abs(data[i].completed2 - completed_goal2)/balance_ratio2 
+                          + Math.abs(data[i].passed_month2 - passed_month_goal2);
+                }
+                data[i].distance2goal1 = data[i].distance2goal1.toFixed(1);
+                data[i].distance2goal2 = data[i].distance2goal2.toFixed(1);
             }
 
 			$scope.stateList = data;
@@ -85,7 +104,16 @@ datavisual.controller('StateMngtController', function($scope, $http, $interval) 
         var top = (screen.height/2)-(h/2);
         window.open("state_distance_view.html", "_blank", 'width='+w+', height='+h+', top='+top+', left='+left); 
     };
+
+    $scope.addNew = function() {
+        // open new window
+        w = 800; h = 800;
+        var left = (screen.width/2)-(w/2);
+        var top = (screen.height/2)-(h/2);
+        window.open("state_mngt_insert.html", "_blank", 'width='+w+', height='+h+', top='+top+', left='+left); 
+    };
 	
+    // start
     $scope.listProject();
 });
 
