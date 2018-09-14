@@ -9,7 +9,7 @@
 <link href="../css/mystyle.css" rel="stylesheet" type="text/css"/>
 
 <!-- Javascript -->
-<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
 
 <!-- Controller -->
 <script type="text/javascript" src="controller/PlanExecutionInsertController.js"></script>
@@ -37,8 +37,11 @@
                 <div class="form-group">
 					<label class="control-label col-sm-3" for="parentItem" style="text-align: left">Parent item (*): </label>
                     <div class="col-sm-9">
-					    <select id="parentItem" class="form-control" ng-model="parentId">
+					    <!--<select id="parentItem" class="form-control" ng-model="parentId">
                             <option ng-repeat="item in parentItemList" value="{{item.id}}" ng-click="selectParentItem(item.id)">{{item.id}}. {{item.name}}</option>
+                        </select>-->
+                        <select id="code" class="form-control" ng-model="parentItem" ng-options="i as (i.id +'.'+ i.name) for i in parentItemList" ng-change="selectParentItem()">
+                            <option value="">-- Select a Parent Item --</option>
                         </select>
                     </div>
 				</div>
@@ -67,6 +70,18 @@
 					<label class="control-label col-sm-3" for="endDate" style="text-align: left">End Date (*): </label>
                     <div class="col-sm-9">
 					    <input id="endDate" class="form-control" ng-model="newExecution.endDate"/>
+                    </div>
+				</div>
+                <div class="form-group">
+					<label class="control-label col-sm-3" for="purpose" style="text-align: left">Purpose: </label>
+                    <div class="col-sm-9">
+					    <textarea rows="2" col2="50" id="purpose" class="form-control" ng-model="newExecution.purpose"></textarea>
+                    </div>
+				</div>
+                <div class="form-group">
+					<label class="control-label col-sm-3" for="method" style="text-align: left">Method: </label>
+                    <div class="col-sm-9">
+					    <input id="method" class="form-control" ng-model="newExecution.method"/>
                     </div>
 				</div>
 					

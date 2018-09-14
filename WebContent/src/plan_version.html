@@ -10,7 +10,7 @@
 <link href="../css/mystyle.css" rel="stylesheet" type="text/css"/>
 
 <!-- Javascript -->
-<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
 <!-- tree grid -->
 <script src="../js/tree/tree-grid-directive.js"></script>
 <!-- moment time format -->
@@ -50,14 +50,14 @@
                     <div class="form-group">
 					    <label class="control-label col-sm-3" for="code" style="text-align: left">Project Code (*): </label>
                         <div class="col-sm-9">
-					        <select id="code" class="form-control" ng-model="projectId">
-                                <option ng-repeat="proj in projList" value="{{proj.id}}" ng-click="selectProject(proj.name)">{{proj.code}}</option>
+					        <select id="code" class="form-control" ng-model="selectedProj" ng-options="proj as proj.code for proj in projList" ng-change="selectProject()">
+                                <option value="">-- Select a Project --</option>
                             </select>
                         </div>
 				    </div>
                     <div class="form-group">
 					    <label class="control-label col-sm-3" for="name" style="text-align: left">Project Name: </label>
-                        <label id="name" class="control-label col-sm-9" style="text-align: left">{{projectName}}</label>
+                        <label id="name" class="control-label col-sm-9" style="text-align: left" ng-bind="selectedProj.name"></label>
 				    </div>
 			    </div>
 					

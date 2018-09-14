@@ -44,8 +44,8 @@ planning.controller('PlanVersionController', function($scope, $http, $interval) 
 		});
     };
 
-    $scope.selectProject = function(projName) {
-        $scope.projectName = projName;
+    $scope.selectProject = function() {
+        $scope.projectId = $scope.selectedProj.id;
     };
 	
 	$scope.doSearch = function() {

@@ -96,7 +96,15 @@ planning.controller('PlanDetailController', function($scope, $http, $interval) {
         var top = (screen.height/2)-(h/2);
         window.open("constraint_insert.html", "_blank", 'width='+w+', height='+h+', top='+top+', left='+left); 
     };
+
+    $scope.viewExecutionLog = function() {
+        if ($scope.plan_id == -1) return;
+        // move to plan execution page
+        sessionStorage.setItem("plan_id", $scope.plan_id);
+        document.location.href = 'plan_execution.html';
+    };
 	
+    // start
 	$scope.doSearchRule(1);
     $scope.doSearch(1);
 });

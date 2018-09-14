@@ -111,7 +111,7 @@
 						<td>{{d.index}}</td>
                         <td>{{d.item_name}}</td>
                         <td>{{d.item_value}} {{d.item_unit}}</td>
-                        <td>{{d.actual_value}} {{d.item_unit}}</td>
+                        <td><a ng-click="viewExecutionLog()">{{d.actual_value}} {{d.item_unit}}</a></td>
                         <td>{{d.user_assigned_name}}</td>
 						<td>{{d.date_start | date: 'yyyy/MM/dd'}}</td>
 						<td>{{d.date_end | date: 'yyyy/MM/dd'}}</td>

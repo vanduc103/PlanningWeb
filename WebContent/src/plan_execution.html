@@ -56,12 +56,12 @@
 				<thead>
 					<tr>
 						<th class="col-md-1" style="width: 10px">#</th>
-                        <th class="col-md-4">Plan item</th>
-                        <th class="col-md-3">Value</th>
-						<th class="col-md-1">User executed</th>
+                        <th class="col-md-2">Plan item</th>
+                        <th class="col-md-2">Value</th>
 						<th class="col-md-1">Date start</th>
 						<th class="col-md-1">Date end</th>
-                        <th class="col-md-2">Time log</th>
+                        <th class="col-md-4">Purpose</th>
+                        <th class="col-md-2">Method</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -73,10 +73,10 @@
 						<td>{{d.index}}</td>
                         <td>{{d.item_name}}</td>
                         <td>{{d.item_value}} {{d.item_unit}}</td>
-                        <td>{{d.user_executed_name}}</td>
 						<td>{{d.date_start | date: 'yyyy/MM/dd'}}</td>
 						<td>{{d.date_end | date: 'yyyy/MM/dd'}}</td>
-                        <td>{{d.date_log | date: 'yyyy/MM/dd HH:mm:ss'}}</td>
+                        <td>{{d.execution_purpose}}</td>
+                        <td>{{d.execution_method}}</td>
 					</tr>
 				</tbody>
 			</table>

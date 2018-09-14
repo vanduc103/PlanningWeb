@@ -13,7 +13,7 @@ datavisual.controller('PlanExecutionInsertController', function($scope, $http, $
     $scope.plan_name = '';
 
     $scope.parentId = -1;
-    $scope.newExecution = {"itemId": -1, "itemValue": '', "itemUnit": "", "startDate": "", "endDate": ""}
+    $scope.newExecution = {"itemId": -1, "itemValue": '', "itemUnit": "", "startDate": "", "endDate": "", "purpose": "", "method": ""}
 	
     //get plan from another page
 	var otherPagePlanId = sessionStorage.getItem("plan_id");
@@ -72,17 +72,22 @@ datavisual.controller('PlanExecutionInsertController', function($scope, $http, $
         //plan_id
 	    if($scope.plan_id != -1) {
 		    //submit url
-            var url = BASE_URL + 'newPlanExecution?planId='+otherPagePlanId
-                                                + '&itemId='+$scope.newExecution.itemId 
-                                                + '&itemValue='+$scope.newExecution.itemValue
-                                                + '&startDate='+$scope.newExecution.startDate
-                                                + '&endDate='+$scope.newExecution.endDate;
+            var url = BASE_URL + 'newPlanExecution?planId=' + $scope.plan_id
+                                                + '&itemId=' + $scope.newExecution.itemId 
+                                                + '&itemValue=' + $scope.newExecution.itemValue
+                                                + '&startDate=' + $scope.newExecution.startDate
+                                                + '&endDate=' + $scope.newExecution.endDate
+                                                + '&purpose=' + encodeURIComponent($scope.newExecution.purpose)
+                                                + '&method=' + encodeURIComponent($scope.newExecution.method);
 		    $http.get(url).then(function(response) {
                 var data = response.data;
                 if (data != '0') {
 			        alert('Insert successfully !');
+                    $scope.parentId = -1;
+                    $scope.newExecution = {"itemId": -1, "itemValue": '', "itemUnit": "", "startDate": "", "endDate": "", "purpose": "", "method": ""};
+
                     window.opener.location.reload();
-                    close();
+                    //close();
                 }
                 else {
                     alert('Insert failed !');
@@ -95,8 +100,8 @@ datavisual.controller('PlanExecutionInsertController', function($scope, $http, $
         close();
     }
 
-    $scope.selectParentItem = function(id) {
-        $scope.parentId = id;
+    $scope.selectParentItem = function() {
+        $scope.parentId = $scope.parentItem.id;
         $scope.doSearchItem();
     };
 
@@ -104,6 +109,7 @@ datavisual.controller('PlanExecutionInsertController', function($scope, $http, $
         $scope.newExecution.itemUnit = unitName;
     };
 	
+    // start
 	$scope.doSearchParentItem();
 });
 

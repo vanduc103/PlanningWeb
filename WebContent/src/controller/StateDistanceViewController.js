@@ -9,22 +9,22 @@ datavisual.controller('StateDistanceViewController', function($scope, $http, $in
         close();
     };
 
-    var data0 = [{'label': 'Initial state', 'x': 0, 'y': 0}, {'label': 'Goal state', 'x': 100, 'y': 12}];
-    var data1 = [{'label': 'State 1.1', 'x': 10, 'y': 1}, {'label': 'State 1.2', 'x': 30, 'y': 4}, 
-                 {'label': 'State 1.3', 'x': 60, 'y': 5}, {'label': 'State 1.4', 'x': 80, 'y': 10}];
-    var data2 = [{'label': 'State 2.1', 'x': 20, 'y': 1}, {'label': 'State 2.2', 'x': 55, 'y': 7}, 
-                 {'label': 'State 2.3', 'x': 85, 'y': 11}];
+    var data0 = [{'label': 'Initial state', 'y': 0, 'x': 0}, {'label': 'Goal state', 'y': 100, 'x': 12}];
+    var data1 = [{'label': 'State 1.1', 'y': 10, 'x': 1}, {'label': 'State 1.2', 'y': 30, 'x': 4}, 
+                 {'label': 'State 1.3', 'y': 60, 'x': 5}, {'label': 'State 1.4', 'y': 80, 'x': 10}];
+    var data2 = [{'label': 'State 2.1', 'y': 20, 'x': 1}, {'label': 'State 2.2', 'y': 55, 'x': 5}, 
+                 {'label': 'State 2.3', 'y': 85, 'x': 10}];
    
     var margin = {top: 20, bottom: 60, left: 40, right: 20}
       , width = 800 - margin.left - margin.right
       , height = 500 - margin.top - margin.bottom;
     
     var x = d3.scale.linear()
-              .domain([0, 100])
+              .domain([0, 12])
               .range([ 0, width ]);
     
     var y = d3.scale.linear()
-    	      .domain([0, 12])
+    	      .domain([0, 100])
     	      .range([ height, 0 ]);
  
     var chart = d3.select('#viewDiv')

@@ -1,6 +1,7 @@
-var planning = angular.module('planning', ['treeGrid']);
+var app = angular.module('planning', ['treeGrid']);
+var $scope;
 
-planning.controller('PlanMngtController', function($scope, $http, $interval) {
+app.controller('PlanMngtController', function($scope, $http, $interval) {
 	var BASE_URL = "http://localhost:9000/";
 	$scope.message = 'Please Wait...';
 	$scope.backdrop = true;
@@ -62,8 +63,8 @@ planning.controller('PlanMngtController', function($scope, $http, $interval) {
 		});
     };
 
-    $scope.selectProject = function(projName) {
-        $scope.projectName = projName;
+    $scope.selectProject = function() {
+        $scope.projectId = $scope.selectedProj.id;
     };
 	
 	$scope.doSearch = function() {
@@ -168,6 +169,7 @@ planning.controller('PlanMngtController', function($scope, $http, $interval) {
 		return d.format(format);
 	};
 
+    // start
     $scope.listProject();
 });
 
